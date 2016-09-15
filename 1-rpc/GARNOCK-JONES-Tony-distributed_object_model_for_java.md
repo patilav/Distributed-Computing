@@ -122,7 +122,7 @@ the “fallacies of distributed computing” [2]:
 
   *Latency is zero.* The paper does not acknowledge network latency
   at all. A brief look at other sources of information on RMI
-  suggests that various approaches exist to introducting
+  suggests that various approaches exist to introducing
   TCP-level timeouts, for example, but the need for finer-grained
   control over request latency is not recognised by RMI.
 
