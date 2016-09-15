@@ -37,6 +37,6 @@ The paper is lacking in more real-world examples on how the unified vision is fa
 
 ## My Opinion
 
-The paper does a good job at presenting the issues around the early object oriented distributed systems and proposing some solutions. However, the solutions presented are a little abstract in nature.
+The paper does a good job at presenting the issues around the early object oriented distributed systems and proposing some solutions. It is easy to understand the drawbacks of unified vision of objects. However, the solutions presented are a little abstract in nature, and it is unclear on how to implement it in practice.
 
 
