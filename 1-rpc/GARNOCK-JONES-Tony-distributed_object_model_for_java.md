@@ -101,7 +101,7 @@ popular) engineering development than a direct contribution to the
 theory of distributed language design.
 
 In fact, with hindsight, we might see an implicit contribution: the
-paper indirectly highlights the difficulty of `bolting on' a facility
+paper indirectly highlights the difficulty of 'bolting on' a facility
 for distributed computation to an existing non-distributed language.
 These difficulties can be clearly seen when viewed through the lens of
 the “fallacies of distributed computing” [2]:
@@ -199,7 +199,7 @@ object is lost: the copy and the original are free to evolve
 independently. The programmer has no control over this process (other
 than the ability to mark concrete classes as being full-fledged
 distributed objects subject to RMI's distributed garbage collection
-system). This makes a very visible `seam' at the boundary between
+system). This makes a very visible 'seam' at the boundary between
 distributed and non-distributed code: programmers must think quite
 differently about the notions of equivalence they are relying upon in
 each case [4]. In addition, the lack of control over object copying
