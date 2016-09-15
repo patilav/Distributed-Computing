@@ -32,9 +32,11 @@ NFS introduced the concept of partial failure in a file system by introducing tw
 ### Conclusion
 The paper proposes that instead of trying to merge the differences between local and remote objects, systems should be engineered in a way which acknowledges the differences between the two. This doesn't mean they cannot be defined using a IDL, but should include some additional info on the intended usage. The compiler for IDL can then take care of the generated objects. The application needs to identify the calls to local and remote objects, and handle them differently. 
 
-### Limitations/Extensions
+## Limitations/Extensions
+The paper is lacking in more real-world examples on how the unified vision is failing the distributed systems. This is understandable given the paper is from the early ages of distributed systems and is only dealing with systems which are modelled to be object oriented. Also, the solutions presented to current problems, and new alternative approach presented are a little abstract in nature.
 
+## My Opinion
 
-### My Opinion
+The paper does a good job at presenting the issues around the early object oriented distributed systems and proposing some solutions. However, the solutions presented are a little abstract in nature.
 
 
