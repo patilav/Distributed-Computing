@@ -15,7 +15,7 @@ Dynamic Stub loading: RMI heavily relies on dynamic stubs than static ones. The 
 Garbage collection: The remote objects having no reference on the client end are collected with the help of reference-counting mechanism. Also, it is ensured that no objects are pre maturely collected.
 Pickling: Java based mechanism to transmit the objects between client and the server address spaces.
 
-	We can conclude that the paper discusses about a Java based RPC implementation leveraging the functionalities provided by JVM and the language itself. The language dependency is a significant advantage which makes it simple, highly seamless and adaptable for distributed programming.
+We can conclude that the paper discusses about a Java based RPC implementation leveraging the functionalities provided by JVM and the language itself. The language dependency is a significant advantage which makes it simple, highly seamless and adaptable for distributed programming.
 
 <i>Limitations</i>:
 The paper doesn’t explain how RMI registry could be configured in a distributed system which makes us concerned about the availability of RMI registry. RMI registry could be a single point of failure in the distributed system.
