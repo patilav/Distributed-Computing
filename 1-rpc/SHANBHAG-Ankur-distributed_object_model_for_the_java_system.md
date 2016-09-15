@@ -1,8 +1,10 @@
-﻿Summary
+﻿*** Summary ***
+
 This paper presents an efforts towards building an Remote Method Invocation (RMI) system to support distributed objects in Java while retaining most of the Java object’s semantics.
 
 
-Contributions
+*** Contributions ***
+
 1. Author determines main goals for supporting distributed objects in Java as follows:
 * Distributed object model should fit well in the Java object model so that programmers don’t deal with 2 different model when writing distributed programs. 
 * It should preserve Java runtime safety.
@@ -37,7 +39,7 @@ This RMI system solves the problem of code mismatch (prevalent with traditional 
 7. The RMI system relies on JDK1.0 security manager to guarantee safety which does not regulate resource consumption. Thus RMI system is incapable of preventing the loaded stub classes from misusing system resources.
 
 
-Limitations:
+*** Limitations ***
 * The design goals presented in the paper looks promising at the first glance, however close observation reveals that the author makes no attempt towards solving some of the primary challenges of distributed computing such as fault tolerance, consistency or availability.
 * Lack of distributed synchronization mechanism will lead to inconsistent objects in case of concurrent modification requests by multiple clients.
 * Current system does not support replication of distributed objects which makes the system fragile. For example - clients may not be able to access remote objects in case of network partition. Thus the programmer has to write code to handle such scenarios gracefully.
@@ -45,5 +47,5 @@ Limitations:
 * Finally, the idea of passing around code in the system sounds alarming which may introduce many security threats in the system. 
 
 
-Opinion:
+*** Opinion ***
 Given that the paper was published in 1996 the notion of distributed objects in Java sounds fascinating. Author clearly shows his intent towards building a distributed model from developers standpoint but the proposal lacks many qualities of a modern distributed system. Moreover, there are subtle differences between the proposed distributed object model and the Java object model. Lack of distributed thread model or non-reliable garbage collector does no good the developers. Wide adoption of data oriented approach to distributed computing, tight integration of the RMI model with one programming language and failure to address basic challenges of distributed computing, this distributed object model has gradually lost popularity over the years.
