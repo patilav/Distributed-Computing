@@ -65,6 +65,16 @@ such as with a partitioned global address space.
 With PGAS, the programmer is still aware of the difference between local and remote addresses
 but is free to temporarily forget it when not dealing with performance-sensitive work.
 
+Though not discussed in the paper,
+address space separation also complicates sending objects
+because they include their own behavior.
+Sending actual executable code over the network is probably undesirable
+due to security concerns and possibly architecture restrictions.
+A system design that relies on inversion of control needs to
+have some way around this issue,
+such as keeping a copy of all code that might be "transmitted"
+available from a trusted source for each machine that might have to "receive" it.
+
 ### Pervasive concurrency
 
 Concurrency arises from different objects across a network having their methods invoked without any possibility of centralized coordination.
