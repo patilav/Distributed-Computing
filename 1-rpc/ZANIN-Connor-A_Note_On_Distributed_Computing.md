@@ -135,3 +135,4 @@ The first is: Is the unified-object model possible?
 The second is: Does the application developer need to recognize distribution?
 In the paper, the author argues that the unified-object model is impossible because ultimately the developer needs to recognize the difference between local and remote objects in the application design.
 However, I believe that the success of a unified-object model is independent of the required knowledge of the developer.
+I propose that an intelligent compiler could perform the work of determining an object's locality, assigning proper interfaces between objects, and provide mechanisms for recovery in the face of partial failure.
