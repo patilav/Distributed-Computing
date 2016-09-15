@@ -118,7 +118,12 @@ the “fallacies of distributed computing” [2]:
   the objects it delegates to are local or remote. The dynamism of the
   object graph in object-oriented languages means that the scope of an
   exception handler is not a good fit for the scope of failure in a
-  distributed system.
+  distributed system. Finally, the paper suggests designing RMI
+  services so that their operations are *idempotent*, allowing retries
+  in the face of errors; however, this limits the programmer to
+  “roll-forward” strategies. This, in combination with the pervasive
+  mutability of Java objects, may make it more difficult to avoid
+  corruption of program state in the face of RMI failures.
 
   *Latency is zero.* The paper does not acknowledge network latency
   at all. A brief look at other sources of information on RMI
