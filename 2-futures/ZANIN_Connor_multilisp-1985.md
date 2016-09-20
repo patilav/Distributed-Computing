@@ -26,10 +26,16 @@ The paper defines four categories of languages based on these characteristics.
 Multilisp falls into the category defined as having (1) constructs for explicit parallelism, (2) side effects, and (3) a shared memory model.
 
 According to this paper, there are 4 challenges to consider when designing a parallel language.
-* Software Engineering: the practicality of the language
-* Numerical vs Symbolic computation: how the language treats both
-* Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
-* Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
+
+1. Software Engineering: the practicality of the language
+
+Is the language (1) topology-agnostic, and (2) easy to use?. The answers to both of these questions need to be true of a language in order for a language to be adopted. If the language is not portable, or is too difficult to use for the creation of programs, the language will not be adopted.
+
+The ultimate goal of language design is to provide software developers with a tool for creating programs that do useful work. This is because real programmers work for real companies that need to make real money. This is not a bad thing, but is a consideration that must be made when designing a language. Additionally, if a language is not portable it will quickly become irrelevent. Not only is a machine-specific language not portable to other current systems, it will not be portable to *future* systems. Hence, real companies that need to make real money will tell their real programmers to create programs in languages that can take advantage of ever-improving hardware.
+
+2. Numerical vs Symbolic computation: how the language treats both
+3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
+4. Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
 
 
 
