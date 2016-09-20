@@ -16,8 +16,14 @@ A language designed to implement concurrent programs should be tested against pr
 
 ### 2: Issues in Parallel Language Design
 
-The sections begins by defining three binary characteristics of parallel languages, and four categories of languages that can be derived from them (it must be presumed the authors are holding the other four to ransom).
+The sections begins by defining three binary characteristics of parallel languages, and four categories of languages that can be derived from them (it may be assumed the authors are holding the other four to ransom).
+The characteristics include:
+* presence of explicit parallelism - does the programmer have control over parallelism?
+* presence of side effects - does the language allow for state changes?
+* presence of a shared memory model - is the entire address space visible to all parts of a program (or is it partitioned)?
 
+The paper defines four categories of languages based on these characteristics.
+Multilisp is defined as having (1) constructs for explicit parallelism, (2) side effects, and (3) a shared memory model.
 
 According to this paper, there are 4 challenges to consider when designing a parallel language.
 * Software Engineering: the practicality of the language
@@ -25,6 +31,7 @@ According to this paper, there are 4 challenges to consider when designing a par
 
 There is also a section in the middle (2.3) that attacks the "CSP" programming paradigm.
 This is not a general challenge for parallel language design but rather an address of the short-comings of one design paradigm in particular.
+From its description, CSP seems to resemble the message-passing style of programming.
 
 ### 3: Something
 
