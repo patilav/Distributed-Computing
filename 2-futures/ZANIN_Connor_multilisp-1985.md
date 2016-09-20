@@ -31,7 +31,9 @@ According to this paper, there are 4 challenges to consider when designing a par
 
 Is the language (1) topology-agnostic, and (2) easy to use?. The answers to both of these questions need to be true of a language in order for a language to be adopted. If the language is not portable, or is too difficult to use for the creation of programs, the language will not be adopted.
 
-The ultimate goal of language design is to provide software developers with a tool for creating programs that do useful work. This is because real programmers work for real companies that need to make real money. This is not a bad thing, but is a consideration that must be made when designing a language. Additionally, if a language is not portable it will quickly become irrelevent. Not only is a machine-specific language not portable to other current systems, it will not be portable to *future* systems. Hence, real companies that need to make real money will tell their real programmers to create programs in languages that can take advantage of ever-improving hardware.
+A motivation behind language design is to provide software developers with a tool for creating programs that do useful work. This is because real programmers work for real companies that need to make real money. This is not a bad thing, but is a consideration that must be made when designing a language. Additionally, if a language is not portable it will quickly become irrelevent. Not only is a machine-specific language not portable to other current systems, it will not be portable to *future* systems. Hence, real companies that need to make real money will tell their real programmers to create programs in languages that can take advantage of ever-improving hardware.
+
+If programmability was not a consideration, we would all program in assembly. I would argue it is the sole purpose of programming languages to provide programmability.
 
 2. Numerical vs Symbolic computation: how the language treats both
 3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
