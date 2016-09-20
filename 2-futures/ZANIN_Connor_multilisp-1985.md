@@ -27,7 +27,7 @@ Multilisp falls into the category defined as having (1) constructs for explicit 
 
 According to this paper, there are 4 challenges to consider when designing a parallel language.
 
-1. Software Engineering: the practicality of the language
+#### 1. Software Engineering: the practicality of the language
 
 Is the language (1) topology-agnostic, and (2) easy to use?. The answers to both of these questions need to be true of a language in order for a language to be adopted. If the language is not portable, or is too difficult to use for the creation of programs, the language will not be adopted.
 
@@ -35,9 +35,9 @@ A motivation behind language design is to provide software developers with a too
 
 If programmability was not a consideration, we would all program in assembly. I would argue it is the sole purpose of programming languages to provide programmability.
 
-2. Numerical vs Symbolic computation: how the language treats both
-3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
-4. Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
+#### 2. Numerical vs Symbolic computation: how the language treats both
+#### 3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
+#### 4. Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
 
 
 
