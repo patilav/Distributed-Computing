@@ -37,7 +37,9 @@ If programmability was not a consideration, we would all program in assembly. I 
 
 #### 2. Numerical vs Symbolic computation: how the language treats both
 
+This section outlines two broad classes of computations. The relevant difference between numerical and symbolic computation is the ability of the compiler to recognize opportunities for parallelism. In the end, they adopt the MIMD paradigm for Multilisp as it allows them to encompass both styles of computation.
 
+An example of how SIMD is inappropriate for symbolic computation is as follows. Imagine an array is to be sorted in parallel. As in the case of the parallel "sample sort" each thread handles a "bucket" of data. Initially, the data in the array is partitioned into buckets (course-grain sort). Then, the data is sorted per thread (fine-grain sort). If we only look at the latter (fine-grain) stage, it is easy to reason that not every thread will perform the same instructions on its local data. Each bucket of local data might have different relative orderings. In other words, MIMD is necessary because instructions are data dependent.
 
 #### 3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
 
