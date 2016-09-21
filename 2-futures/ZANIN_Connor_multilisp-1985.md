@@ -43,9 +43,18 @@ An example of how SIMD is inappropriate for symbolic computation is as follows. 
 
 #### 3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
 
-
+Because Multilisp supports explicit parallelism and side effects, it is nondeterministic. The authors accept this trade-off, as it allows programmers more flexibility when writing parallel program.
 
 #### 4. Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
+
+The authors state there are two ways of introducing parallelism into a sequential algorithm. The first is to perform the same set of operations, but recognize dependencies between operations to determine which branches of code can run concurrently. By this method, scheduling is not so much an issue because *all operations must be performed.* The second way of introducing parallelism is preemptive; tasks are scheduled which may or may not provide useful results. Tasks generated this way are more difficult to schedule, because they require a weighting mechinism to schedule tasks that are more likely to provide useful results more often.
+
+Here, I would have appreciated a citation of such an algorithm that makes use of what they call "eager-beaver" concurrency.
+
+Is this related?
+https://groups.csail.mit.edu/cag/softspec/FDDO.pdf
+
+In any case, they state that Multilisp does not currently (1985) speculative parallelism but it is a candidate for future work.
 
 #### Criticism of CSP
 
