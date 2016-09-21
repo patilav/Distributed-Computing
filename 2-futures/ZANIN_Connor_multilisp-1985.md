@@ -67,9 +67,35 @@ The author claims the "principle failings" of CSP are that (1) each domain of da
 
 This paper is dated, so I may forgive it. I wonder how the authors would reflect on these words in the face of MPI? In the scientific computing and HPC community, the CSP-style language MPI is hugely popular. Particularly, it is popular *because* of (1) and (2). The size of problems has increased since the publication of this paper. Now, it is necessary to have concurrent programming languages that can cope with being run accross multiple machines. In the case of multiple machines, (1) is necessary (well, not if RDMA is used http://www.mcs.anl.gov/~thakur/papers/rma-perf.pdf, http://wgropp.cs.illinois.edu/courses/cs598-s16/lectures/lecture34.pdf). If (1) is necessary, then (2) is advisable in order to give programmers the necessary "tweakability" to optimize performance. In the case of RDMA, (2) may still be necessary in order to ensure program correctness and/or determinism (i.e., making sure all nodes compute a local sum before another machine collects the local results).
 
-### 3: Something
+### 3: Multilisp
 
-### 4: Something
+Multilisp shares 3 characteristics with Scheme
+
+1. free variable references are resolved in the environment of the referencing procedure, not the one of the calling procedure
+2. data passed to procedures is allocated on the heap and is abstracted by the enclosing procedure
+3. recursive calls are optimized (procedure calls are reduced to jump instructions)
+
+#### The Multilisp Approach to Parallelism
+
+To mitigate the non-determinacy introduced by explicity parallelism *and* side effects, Multilisp is designed such that most code is written without side effects. When side effects are necessary, the language provides data abstractions so that calls to such data may be protected and synchronized.
+
+I agree with this approach. Arguably the hardest part of designing a parallel application is thinking about how data should be treated. Putting the restriction of *mostly* side effect free code on the programmer might reduce the burden of parallelizing a serial algorithm. However, I do wonder if there are any algorithms that must heavily rely on side effects, and the possibility of implementing such algorithms in Multilisp.
+
+Two constructs, `pcall` and `futures` provide the means in Multilisp for parallelism. `pcall` is used to evaluate the arguments to a procedure in parallel, and then call the procedure. This is analogous to a fork()-join() approach. `futures` allow memory allocation to take place concurrently alongside the evaluation of the value which will reside in such memory.
+
+The authors talk about resourse allocation. Multilisp handles the scheduling of resources, but the amount of resources being used at any time is dependent on the amount of parallelism expressed in the program. Worryingly, the authors state that while the currently implementation of Multilisp performs adequetetly, they predict that as CPU speed increases they will need to reveal the power of resource allocation to the programmer.
+
+### 4: Implementation of Multilisp
+
+Here the authors give details about the hardware Multilisp is implemented on top of. They give details about MCODE, a "machine-level language" that is "interpreted by a program written in ... C." They go on to describe resource allocation, including the heap and garbage collection, and providing a limited performance evaluation.
+
+The authors state that Multilisp runs as fast serially as another dialect of Lisp. Unfortunately, they give no formal performance comparison.
+
+The performance evaluation is limited. They show that for an already embarassingly parallel algorithm, "nearly" strong scaling can be achieved.
+
+Overall, Multilisp seems tightly coupled to the hardware despite earlier claims of being hardware-agnostic. In section 4.1, the description given of MCODE hints that there is more initial setup needed that the authors would like to reveal. They state "one copy of this... program is located in the local memory of... each processor." Additionally, they state the heap is shared among all copies of the interpreter. This bootstrapping is not described in detail, and is not clear about whether or not the copies of the interpreter are assigned per processor manually or by some external scheduler (an OS).
+
+Given that this is an initial implementation, Multilisp can be afforded the cost of some manual setup. However, the authors contradict themselves by boasting the portability of their language while simultaneously hand-crafting the interpreter to the processor.
 
 ### 5: Dark Side
 
