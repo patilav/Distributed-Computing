@@ -36,14 +36,25 @@ A motivation behind language design is to provide software developers with a too
 If programmability was not a consideration, we would all program in assembly. I would argue it is the sole purpose of programming languages to provide programmability.
 
 #### 2. Numerical vs Symbolic computation: how the language treats both
+
+
+
 #### 3. Determinacy: does the language garuantee a program given the same inputs will produce the same outputs?
+
+
+
 #### 4. Styles of parallelism: how will the programmer introduce parallelism to an otherwise sequential algorithm?
 
-
+#### Criticism of CSP
 
 There is also a section in the middle (2.3) that attacks the "CSP" programming paradigm.
 This is not a general challenge for parallel language design but rather an address of the short-comings of one design paradigm in particular.
-From its description, CSP seems to resemble the message-passing style of programming.
+
+From its description, CSP seems to encompass the message-passing style of programming. An MPI program follows the CSP classification, in that an MPI program contains mechinisms for explicit parallelism, and when parallelism is present execution occurs at the process level; processes have independent address spaces. Further, MPI is built on top of C, a language that allows for so-called side effects. The only case against classifying MPI as a CSP language is that it allows for thread-level parallelism within the address space.
+
+The author claims the "principle failings" of CSP are that (1) each domain of data is restricted to a sequential thread and that (2) this distinction of data locality leads to non-uniform access.
+
+This paper is dated, so I may forgive it. I wonder how the authors would reflect on these words in the face of MPI? In the scientific computing and HPC community, the CSP-style language MPI is hugely popular. Particularly, it is popular *because* of (1) and (2). The size of problems has increased since the publication of this paper. Now, it is necessary to have concurrent programming languages that can cope with being run accross multiple machines. In the case of multiple machines, (1) is necessary (well, not if RDMA is used in practice http://www.mcs.anl.gov/~thakur/papers/rma-perf.pdf, http://wgropp.cs.illinois.edu/courses/cs598-s16/lectures/lecture34.pdf). If (1) is necessary, then (2) is advisable in order to give programmers the necessary "tweakability" to optimize performance.
 
 ### 3: Something
 
