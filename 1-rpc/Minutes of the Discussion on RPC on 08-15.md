@@ -45,8 +45,13 @@ Muzammil followed up with a question about usefulness of stubs. Paul made a poin
 FINAGLE
 --
 
-Muzzamil asked a question about the difference between RPC and REST. 
 --
+Muzzamil asked a question about the difference between RPC and REST. 
+According to professor, RPC these days means anything where you have a server and a client, and you're sending something to the client in a request-response pattern. Taking away the stubs ant all the other details, this is all they mean. 
+
+No invoking the function guarentee.
+
+Tony : "it is just a protocol now" and "people have given up on transparency".
 --
 
 Tony asked whether HTTP is RPC. This was an interesting observation,because even though HTTP looks a lot like function calls, now we're confusing between RPC and the transport layer which enables it. 
@@ -57,7 +62,7 @@ If we're not defining the type of communication, then we're essentially just sen
 
 ### Conclusion
 
-Shifting definition
+One obvious takeaway from the discussion is the shifting definition of RPC. Even though difining the shift accurately is hard, it can be viewed as either widening of it to general principals or narrowing down to a pure version of it. And according to Professor, a definitive arc on RPC should be able to charecterize this change in the definition.
 
 Aviral made an anology about how every language implements Object oriented concepts in a different way, but all are still object oriented and how RPC defined is defined in many different ways.
 
