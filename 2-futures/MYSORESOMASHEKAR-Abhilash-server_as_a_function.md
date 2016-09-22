@@ -1,4 +1,4 @@
-                                      <b> Your server as a function </b>
+                                      <bold> Your server as a function </bold>
 
 This paper describes a model which aims at solving many of the prominent issues in distributed systems - connection pooling, load balancing, efficient throughput, distributed tracing, concurrency etc. However, the notable feature / the main goal is that all of the issue handling is done under the hood without any complex programming implementation. This “proven successful” distributed system is named Finagle and embraces abstraction and modularity through functional programming.
 
