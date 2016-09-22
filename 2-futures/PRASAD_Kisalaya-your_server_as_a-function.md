@@ -61,6 +61,7 @@ The people developing Finagle came up with a tool, JVMGCPROF which provides repo
 
 ## Related work
 LWT is a cooperative threading library in OCaml with a lightweight thread similar to futures.
+Dataflow programming languages also enforce dependencies between computations, but require determinancy. In the raw form therefore, they are not suitable for sytems. There is a proposal to split these languages into deterministic parts connected by nondeterministic channels.
 
-Dataflow programming languages also enforce dependencies between computations
+Haskell and Go come with cheap user-space threads, reducing the overhead for thread-based concurrent systems. The cost associated with managing these threads is cheap, again freeing up programmers from the extra work of managing these resources. But the threads don't provide the same clean data flow models as Futures and are part of the language model, so are not allowed to be managed/optimized at the runtime. 
 
