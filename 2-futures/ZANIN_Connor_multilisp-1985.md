@@ -97,8 +97,12 @@ Overall, Multilisp seems tightly coupled to the hardware despite earlier claims 
 
 Given that this is an initial implementation, Multilisp can be afforded the cost of some manual setup. However, the authors contradict themselves by boasting the portability of their language while simultaneously hand-crafting the interpreter to the processor.
 
-### 5: Dark Side
-
 ## Limitations and Extensions
 
+Despite claims of portability, Multilisp was only shown to be implemented in one architecture. If the authors had ported Multilisp to another architecture, their case for the new language would have been much stronger.
+
+Further, the evaluation of the performance of Multilisp is limited to one algorithm. It would have been nice to see a broader evaluation of the language, but at the same time it may be argued that distributed computing algorithms are outside the scope of the paper.
+
 ## Editorial
+
+While I thought the implementation and evaluation sections were lacking, I did like the background information and introduction provided by the authors. The introduction layed a good foundation for understanding the challenges and considerations present in parallel language design, and provided a base knowledge. From there, they provided good motivation for the design desisions behind Multilisp.
