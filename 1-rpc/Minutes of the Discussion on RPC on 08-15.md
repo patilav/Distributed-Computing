@@ -1,7 +1,7 @@
 # Minutes of the Discussion on RPC on 08-15
 
 ### Opening remarks
-Idea was to collect the opinions, criticism and critiques.
+The idea behind this discussion was to collect the opinions, criticism and critiques about all the papers which were presented before this discussion.
 
 Professor started with the idea that RPC is less to blame and expectations are set incorrectly. 
 Tony mentioned that in the original paper, they developed their own transport instead of using say TCP. In contrast, later systems used TCP. So, a way to look at RPC would be to look at the aspect of RPC which are different from concerns with transport.
