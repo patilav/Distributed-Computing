@@ -2,6 +2,8 @@
 
 ## Summary
 
+Multilisp is a language based on Scheme, but includes extra primitives for expressing parallelism. This paper covers the design decisions behind Multilisp, an implementation on the Concert CPU, and a short evaluation of the performance of Multilisp.
+
 ## Outline
 
 ### 1: Introduction
