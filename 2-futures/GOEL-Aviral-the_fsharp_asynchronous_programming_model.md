@@ -1,6 +1,7 @@
 # The F# Asynchronous Programming Model
 
 Authored by *Don Syme*, *Tomas Petricek*, and *Dmitry Lomov*
+
 Summarized by *Aviral Goel*
 
 ---
@@ -31,6 +32,6 @@ The paper is well structured and self contained. Motivating the need for asynchr
 ## 5. Further thoughts
 1. The authors claim without references that 'light-weight threads are difficult to integrate in a language/VM without affecting performance of CPU-intensive native code'. The question - Why are kernel level threads slow and how can we address this problem with efficient user level threads supported by the compiler? still seems open. This [Google talk](https://www.youtube.com/watch?v=KXuZi9aeGTw) delves into the issues with thread implementations and proposes a modified API. Similarly, [this paper](http://dl.acm.org/citation.cfm?id=1251058) talks about improving thread performance. 
 
-2. Even if we have good thread implementations, how will we compose them? One would like to manipulate parallel computations as building blocks to create bigger building blocks. The authors hit the nail on the head when they say - "Events v. threads is a major topic in systems research, with papers highlighting the duality of the two approaches, and less on expressivity.". I believe that even if threads are made faster somehow, we still need useful abstractions for composing parallel computations and we will end up developing the same abstractions as we have for event based model. 
+2. Even if we have good thread implementations, how will we compose them? One would like to manipulate parallel computations as building blocks to create bigger building blocks. The authors hit the nail on the head when they say - 'Events v. threads is a major topic in systems research, with papers highlighting the duality of the two approaches, and less on expressivity.'. I believe that even if threads are made faster somehow, we still need useful abstractions for composing parallel computations and we will end up developing the same abstractions as we have for event based model. 
 
 3. Through CPS translation, an `async` expression is transformed by the compiler to core language constructs. This is just syntax rewriting which can be easily done with macros. Though implementing a macro system would definitely be orthogonal to implementing an asynchronous computation model, but it would have probably allowed `async` to be written as a library component rather than a core compiler construct. Why view a language as a fixed set of rules?
