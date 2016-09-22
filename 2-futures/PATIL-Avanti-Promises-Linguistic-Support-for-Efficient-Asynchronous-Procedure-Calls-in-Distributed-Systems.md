@@ -9,13 +9,40 @@ This paper deals with the concept of `Promises`: a new data type designed to sup
 
 ## Summary
 This paper describes `Promise` as a data type which was developed after getting motivated by a communication mechanism called `call-stream` which was invented so that programs can use components over a network in a heterogeneous computing environment. `Call-streams` combine advantages of (1) Remote procedure calls and (2) message passing. `Promises` were introduces to preserve the merits of organizing programs using procedures and procedure calls without sacrificing the performance benefits of call-streams. Some attributes of Promises are (a)Strongly typed (b) allow the result of a call to be picked up later (c) allow exceptions from the called procedure to be propagated in a convenient manner. (d) handle node failures and network partitions using call-stream mechanism. 
+`Call-stream` vs `RPC`: (1) Call-streams allows the caller to run in parallel with the sending and processing of the call (2) Call-stream reduce the cost of transmitting the call and reply messages by buffering technique unlike RPC which send messages immediately. In call-stream a receiving entity provides one or more named ports; which are strongly type and identify procedures that can be called from other entities. Exception handling is used as a termination model to avoid abnormal termination. Arguments and results are passed by value. Groups of ports which belong to same entity define the receiving ends of streams which are sequenced. Deadlocks are handled by no concurrent activity within an entity i.e. separate activists should not share the same stream. Agents define the sending ends of streams. An agent and a port group together define a stream. If the system is unable to live up to the guarantees, it breaks the stream. Since streams are based on buffering two important primitives provided to sender are `flush` and `synch` for all calls.
 
-Call-streams are a language-independent communication mechanism. `Call-stream` vs `RPC`: (1) Call-streams allows the caller to run in parallel with the sending and processing of the call (2) Call-stream reduce the cost of transmitting the call and reply messages by buffering technique unlike RPC which send messages immediately. In call-stream a receiving entity provides one or more named ports; which are strongly type and identify procedures that can be called from other entities. Exception handling is used as a termination model to avoid abnormal termination. Arguments and results are passed by value. Groups of ports which belong to same entity define the receiving ends of streams which are sequenced. Deadlocks are handled by no concurrent activity within an entity i.e. separate activists should not share the same stream. Agents define the sending ends of streams. An agent and a port group together define a stream. If the system is unable to live up to the guarantees, it breaks the stream. Since streams are based on buffering two important primitives provided to sender are `flush` and `synch` for all calls.
+In next subsections paper describes the Argus promise mechanism and shows how promises integrate streams and local forked procedures. 
 
-This paper describes the streams within a programming language, Argus. Argus supports RPCs and implements call-streams using similar terminologies. Guardians are active entities which resides entirely at a single node of a network and handlers that can be called by other guardians. Argus computations run as atomic transactions. 
+This paper describes the streams using a programming language, Argus. Argus supports RPCs and implements call-streams using similar terminologies. Guardians are active entities which resides entirely at a single node of a network and handlers that can be called by other guardians. Argus computations run as atomic transactions which allow concurrency. Exception handling in Argus is uses `except` and nearest handling arm. Also `others` arm handles all exceptions not named explicitly. 
 
+Promises:  When a stream call is performed, the caller receives a “promise” for a result that will arrive later. A `promise` is an object that can be used to “claim” the result when it is ready which contains typed result or exception listed by handler.  A `promise` object is in one of two states: (1) blocked: as a part of making a stream call or (2) ready- when the call completes, the promise switches to the ready state and remains in same state. The `claim` operation waits until the promise is ready and returns normally else signals the appropriate exception. An example of calculating and printing results of students is displayed and justified in the paper using Argus programming language demonstrating the call-stream communication mechanism. This examples describes various scenarios for call creation with custom encoding, result generation, exception handing and toggling states of promise in ready/blocked state.
+This example uses stream calls both to overlap processing of calls and to obtain the benefits of buffering messages for calls and replies. 
 
+Local forks: Promises use deferred result for allowing concurrency between caller and callee and ordered processing of calls, but concurrency can also be maintained without the ordering. Local fork can be used in construction and access of recursive data structures such as lists and trees. 
 
+Further discussion reinstates the importance of Multilisp futures for inspiration of Promises. Authors talk about disadvantages of futures (1) inefficient to implement unless specialized hardware is available due to type safety and (2) poor error handling - difficult for a program to determine the reason for the error value. 
+
+Composing Streams: As a part of composing Streams, results should return to the original caller who then sends them on to the next stream. This kind of program form allows arbitrary filter computations to be done to “match” the two streams.
+
+Forks: Forks are a general concurrency mechanism, so they can be used to implement the concurrent loops program structure. But the termination problem will arise in every stream composition; in each case, we will need the ability to treat the processes as a group and to allow a process in the group to cause the termination of the other processes in the group. Furthermore, programming proper termination explicitly can be quite tricky. 
+
+Coenter: This is used to solve the termination problem by identifying the set of processes that implement a stream composition, so that they can be terminated properly when problems arise.  Argus provides a mechanism called `coenter` statement which provides complete and sensible treatment of exceptions and early termination. A `coenter` statement contains a number of arms, each defining a computation to be run as a process. A sub process can cause other sub processes to terminate early. It does this by causing a control transfer outside of the coenter. In this case, any remaining sub processes that are not yet finished are forced to terminate (as discussed further below) before the “parent” process can continue. 
+
+It is appropriate to use `coenter` mechanism when the processes have no results and when the control structure is naturally hierarchical. When these conditions are not satisfied, a fork will be a better mechanism. Note that with hierarchical control there is no variable lifetime problem.
+Discussions: 
+Advantages of coenter: 
+
+(1) For stream composition coenter allows us to indicate directly what processes are involved in the composition, which in turns allows those processes to be terminated as a group if a problem arises.  (2) The code of the processes can be written in line while using coenter. 
+
+Filters:  It would be more efficient to send the filters along with the calls.  However, such a structure is not practical in a heterogeneous system. since different programming languages may be in use at the ends of the streams. 
+
+synchronization would be needed to ensure that the calls on each stream were made in order. To implement such a structure, we need a way of spawning a dynamically determined number of processes. Although the concurrency can be obtained by forks, this leads to the same group termination problem discussed above. Instead a mechanism with automatic grouping is preferable. Argus provides such a mechanism, which extends the coenter to allow a dynamic number of processes. 
+
+Providing concurrency per data item is both an advantage and a problem. 
+I
+nstead of using coenter or forks, another possibility is to provide a construct that supports composition directly. Such a structure could lead both to simpler programs and better performance. However, it is not clear that stream composition is important enough to justify its own linguistic mechanism. At present, we believe that the coenter form is adequate for our needs. 
+ 
+ 
 ## Analysis
 
 This paper was published in 1988 by the Advanced Research Projects Agency of the Department of Defense.  This shows that distributed computing had undergone quite a few changes from remote procedure call and message passing from 1982 since the first conference Symposium on Principles of Distributed Computing (PODC) took place [1]. As distributed computing continues evolving several problems surfaced like reduced performance in remote procedure calls due to waiting in caller. Call-streams were invented to take advantage of remote procedure calls and message passing.  Design of Promises is based on the concept called futures which was introduced in Multilisp has in 1985. Futures in Multilisp were used to create tasks and synchronization of tasks. 
@@ -24,11 +51,19 @@ This paper was published in 1988 by the Advanced Research Projects Agency of the
 
 After carefully analyzing the delay introduced in RPC for processing each call buffering messages will save lots of time for call-streams, especially for small calls and replies. 
 
+At the time when paper was written Using promises for asynchronous remote Calls was entirely new. However, many languages had local concurrency of the “fork” variety.
 
+This paper claims that Argus is type-safe and handles exceptions but Mesa and Modula-2+ miss out on exception propagation to the outer block.  
+
+Author reinstates at multiple places that Multilisp 
+
+Coenter The coenter statement is similar to mechanisms in other languages (e.g., CSP [9]); it differs from these other mechanisms primarily because it offers a complete and sensible treatment of exceptions and early termination.
 
 ## References
 [1] ACM Symposium on Principles of Distributed Computing: http://www.podc.org/history/
 
 [2] Halstead, R. “Multilisp: A language for concurrent symbolic computation”. ACM Trans. on Programming Languages and Systems 7, 4 (October 1985).
+
+
 
 
