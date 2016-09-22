@@ -34,30 +34,28 @@ This paper was published in 1988 by the Advanced Research Projects Agency of the
 
 Main contribution in this paper has been the provision of a mechanism `Promise` that preserves the merits of organizing programs using procedures and procedure calls without sacrificing the performance benefits of call-streams. 
 
-Some attributes of Promises are (a)Strongly typed (b) allow the result of a call to be picked up later (c) allow exceptions from the called procedure to be propagated in a convenient manner. (d) handle node failures and network partitions using call-stream mechanism. 
+Some attributes of Promises are 
+(a)Strongly typed (b) allow the result of a call to be picked up later (c) allow exceptions from the called procedure to be propagated in a convenient manner (d) handle node failures and network partitions using call-stream mechanism.
 
 An example of calculating and printing results of students is displayed and justified in the paper using Argus programming language demonstrating the call-stream communication mechanism. This examples describes various scenarios for call creation with custom encoding, result generation, exception handing and toggling states of promise in ready/blocked state.
 This example uses stream calls both to overlap processing of calls and to obtain the benefits of buffering messages for calls and replies. 
 
-Authors have identified problems with RPC after carefully analyzing the delay introduced in processing each call. Buffering messages will save lots of time for call-streams, especially for small calls and replies and improve Latency. 
+Authors talked about problems with RPC after carefully analyzing the delay introduced in processing each call. Buffering messages will save lots of time for call-streams, especially for small calls and replies and improve Latency. This mechanism was introduced with clearly finding out problems due to buffering and solutions to them. 
 
 Further discussion reinstates the importance of Multilisp futures for inspiration of Promises. Authors talk about disadvantages of futures (1) inefficient to implement unless specialized hardware is available due to type safety and (2) poor error handling - difficult for a program to determine the reason for the error value. 
 
-Coenter offers a complete and sensible treatment of exceptions and early termination.
+Authors discussed that Coenter offers a complete and sensible treatment of exceptions and early termination.
+Advantages of coenter were remarkable: (1) For stream composition coenter allows us to indicate directly what processes are involved in the composition, which in turns allows those processes to be terminated as a group if a problem arises.  (2) The code of the processes can be written in line while using coenter. 
 
-Advantages of coenter:  (1) For stream composition coenter allows us to indicate directly what processes are involved in the composition, which in turns allows those processes to be terminated as a group if a problem arises.  (2) The code of the processes can be written in line while using coenter. 
+Limitation of `Coenter` is that it is appropriate to use `coenter` mechanism when the processes have no results and when the control structure is naturally hierarchical. When these conditions are not satisfied, a fork will be a better mechanism. 
 
-It is appropriate to use `coenter` mechanism when the processes have no results and when the control structure is naturally hierarchical. When these conditions are not satisfied, a fork will be a better mechanism. Note that with hierarchical control there is no variable lifetime problem.
+Authors continue to mention the Important aspect of synchronization would be needed to ensure that the calls on each stream were made in order. To implement such a structure, there should a way of spawning a dynamically determined number of processes. Although the concurrency can be obtained by forks, this leads to the same group termination problem. Instead a mechanism with automatic grouping is preferable. Argus provides such a mechanism, which extends the coenter to allow a dynamic number of processes.  
 
-synchronization would be needed to ensure that the calls on each stream were made in order. To implement such a structure, we need a way of spawning a dynamically determined number of processes. Although the concurrency can be obtained by forks, this leads to the same group termination problem discussed above. Instead a mechanism with automatic grouping is preferable. Argus provides such a mechanism, which extends the coenter to allow a dynamic number of processes. 
+Paper mentions, instead of using coenter or forks, another possibility is to provide a construct that supports composition directly. Such a structure could lead both to simpler programs and better performance. However, it is not clear that stream composition is important enough to justify its own linguistic mechanism. At present, we believe that the coenter form is adequate for our needs. 
 
-Providing concurrency per data item is both an advantage and a problem. 
+At the time when paper was written Using promises for asynchronous remote Calls was entirely new. However, many languages had local concurrency of the “fork” variety. This shows the importance for the 
 
-Instead of using coenter or forks, another possibility is to provide a construct that supports composition directly. Such a structure could lead both to simpler programs and better performance. However, it is not clear that stream composition is important enough to justify its own linguistic mechanism. At present, we believe that the coenter form is adequate for our needs. 
-
-At the time when paper was written Using promises for asynchronous remote Calls was entirely new. However, many languages had local concurrency of the “fork” variety.
-
-Comparison to other languages:
+Comparison to other languages by Authors:
 
 (1) This paper claims that Argus is type-safe and handles exceptions but Mesa and Modula-2+ miss out on exception propagation to the outer block.  
 
@@ -65,12 +63,11 @@ Comparison to other languages:
 
 (3) The send/receive approach used in Plits and MOD can allow programs to achieve high throughput, but it leads to complex and ill-structured programs. 
 
-We also considered the use of promises with forks. Promises for streams have three properties: concurrency of caller and callee, caller control of claiming and putting promises in data structures, and ordering of the processing of a sequence of calls on a stream. Promises for forks have only the first two properties, but are nevertheless very useful. In particular, the ability to propagate exceptions from the forked process to some other process in a convenient manner is extremely useful, and represents a solution to a problem that has been a concern to language designers in this area.
+Authors also considered the use of promises with forks. Promises for streams have three properties: (1) concurrency of caller and callee, (2) caller control of claiming and putting promises in data structures, and (3) ordering of the processing of a sequence of calls on a stream. Promises for forks have only the first two properties, but are nevertheless very useful. In particular, the ability to propagate exceptions from the forked process to some other process in a convenient manner is extremely useful, and represents a solution to a problem that has been a concern to language designers in this area.
 
-Paper concludes that promises are a good way of supporting efficient, asynchronous remote procedure calls in a programming language. The extension to forks allows remote and local concurrency to be provided in a uniform way. Although forks can permit composition of streams, better structured programs result from a mechanism like the coenter, which also handles process termination properly. 
+Paper concludes that promises are a good way of supporting efficient, asynchronous remote procedure calls in a programming language by carefully explaining and evaluating further concepts like `forks` and `coenter`.
 
 ## References
 [1] ACM Symposium on Principles of Distributed Computing: http://www.podc.org/history/
 
-[2] Halstead, R. “Multilisp: A language for concurrent symbolic computation”. ACM Trans. on Programming Languages and Systems 7, 4 (October 1985).
-
+[2] Halstead, R. “Multilisp: A language for concurrent symbolic computation”. ACM Trans. on Programming Languages and Systems 7, 4 (October 1985). 
