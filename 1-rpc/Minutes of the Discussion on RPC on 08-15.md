@@ -1,11 +1,14 @@
 # Minutes of the Discussion on RPC on 08-15
 
 ### Opening remarks
-The idea behind this discussion was to collect the opinions, criticism and critiques about all the papers which were presented before this discussion.
+The idea behind this discussion was to collect the opinions, criticism, issues and critiques about all the papers which were presented before this discussion.
 
-Professor started with the idea that RPC is less to blame and expectations are set incorrectly. 
+Professor starts with an opinion that in the critiques paper, they claim that RPC is bad, because it doesn't fully support all the features of some programming language. Is it wrong to assume that RPC should support every bit of some programming language or something else is wrong ? Maybe the idea of RPC is less to blame and expectations are set incorrectly, or presented in a context which is not valid anymore.
+
+
 Tony mentioned that in the original paper, they developed their own transport instead of using say TCP. In contrast, later systems used TCP. So, a way to look at RPC would be to look at the aspect of RPC which are different from concerns with transport.
 Just looking at architecture of RPC would be better to judge RPC.
+
 
 A mentioned that the original idea that there would be a local network underneath the surface actually colored the way they thought about transport and later on, as the network became bigger, something like TCP would have been lot more appealing than the original protocol.
 Tony and A also mentioned that there would have then been more datapoints to compare the original results with others.
