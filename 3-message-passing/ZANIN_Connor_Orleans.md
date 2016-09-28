@@ -31,8 +31,20 @@ Another thing they talk about is the execution model for Grains. Earlier, they m
 
 ### Orleans Runtime
 
+The Orleans runtime must cope with with the challenges of computing in a cloud environment and abstract some of those challenges from the programmer. These challenges include persistence, replication, isolation, resource management, reconciliation. These problems can be grouped into three major categories: state reconciliation, load balancing, and partial failure.
+
+To address shared state reconciliation, Orleans provides a default mechanism as well as an API for defining specific reconciliation algorithms. This is powerful, because the programmer can control how changes to a Grain's state made by different Activations get resolved. For example, if two Activations change a users subscriber count, an algorithm could be defined to atomically compute the net change.
+
+The authors are vague about the load balancing performed by the Orleans runtime. They say that requests to a Grain are "randomly distributed to existing activiations." They say that if an Activation has a full queue, a new Activation will be created on the same node. They do not mention what happens in the case where all nodes containing Activations of a Grain are busy. Presumably, a new node is requested and an initial Activation is "spun up."
+
 
 
 ## Limitations and Extensions
+
+The contributions of this paper are not great when considering computationally intensive applications. For "HPC" applications, Orleans merely offers a mechanism to recover from partial failure. Since this mechanism is implemented at the Transaction level, it is identical to a HPC "job" failing. Re-running is the solution in either case. 
+
+The contributions of this paper are major, however, when considering applications that are logically simple and have persistent state, but have unpredictable workloads. In other words, user-facing applications like social networks are perfect candidates to benefit from the ease-of-development that Orleans offers. The authors of Orleans have built the system around the Transaction (request) model, which mimics the client-server model of web applications.
+
+As stated in the paper, a place for extension is the reconciliation system. Now, they have defined a loose way of assigning Activations to tasks. They could expand on their work by creating a more concise algorithm for Transaction creation, assigning Activations to Transactions (or creating them), and reconciling the modifications to Grains made by Transactions.
 
 ## Editorial
