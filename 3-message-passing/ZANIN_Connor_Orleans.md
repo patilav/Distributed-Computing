@@ -16,6 +16,23 @@ On top of Grains, Orleans has a notion of a "Transaction." A Transaction is a re
 
 After reading the introduction, I am most curious about the application model that the authors expect Orleans to accomodate. I am curious because they mention briefly that Grains have persistent state, and each Activation of a Grain can make changes to the persistent state (Grains also have their own local state). I am curious about how Grains will be applied and how they will deal with consistency in real applications.
 
+### Programming Model
+
+Promises are used to coordinate asynchronous computation. In Orleans, a promise can be obtained in two ways:
+
+1. An RPC-style method call to another Grain
+2. A call to a Delegate
+
+Delegates are methods that are called when a promise becomes *resolved* (either success or error).
+
+This section also discusses the implementation for creating Grains, Grain factories, and defining Grain interfaces. A point to note here is the exclusion of .NET property setters from Orleans (they return void). However these can easily be replaced by method calls to a grain.
+
+Another thing they talk about is the execution model for Grains. Earlier, they mentioned that Grains process requests one at a time. They note that while this is true of Orleans (each Grain is single-threaded), there is non-determinism present due to the asynchronous nature of promises and the callbacks (Delegates) that process completed promises. To address this, they warn the programmer to be aware of state and to take care when Grains operate on a shared piece of state.
+
+### Orleans Runtime
+
+
+
 ## Limitations and Extensions
 
 ## Editorial
