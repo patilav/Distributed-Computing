@@ -1,4 +1,5 @@
-                                              # Erlang
+                                               Erlang
+                                               
 Issues arise in multi core computers due to the shared memory model. The consistency becomes a challenge when multiple processes access the same memory and further, the workarounds to tackle the same turn into a hassle. This paper introduces us to an age old concurrent programming language - Erlang and the way it harmonizes with the modern multi core computers by moving away from the shared memory model and adopting a message passing model. Author emphasizes specially on Erlang’s unique feature - component isolation and how it helps solve the major challenges in a distributed system like fault tolerance, maintainability and scalability.
 
 The message passing model is heavily dependent on the network. Author states an assumption in the paper that the network is always reliable. 
