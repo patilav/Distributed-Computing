@@ -11,8 +11,7 @@ E programming language addresses these challenges, by changing few concepts of c
 
 This paper focuses on E’s support for concurrent and distributed programming within the constraints of limited trust.
 * Main contribution:
-By dividing the state of a computational system into separately encapsulated objects, and by giving objects limited access to each other, we limit outside interference and extend the range of assumptions
-our programs may safely rely upon.
+By dividing the state of a computational system into separately encapsulated objects, and by giving objects limited access to each other, E limits outside interference and extend the range of assumptions for programs to safely rely upon.
 By abstraction, we limit one object’s need for knowledge of others, reducing the number of cases which are
 relevant. However, even under sequential and benign conditions, the remaining case analysis can still be quite painful.
 
@@ -30,15 +29,24 @@ Instance variables are the variables used freely with the object definition whic
 - Eventual (where new plan is kept in 'to-do' list and executed after the previous plan is completed, which is represneted by "<-"
 
 * Simple E execution:  VAT
-A VAT is minimum unit of persistance, migration, partial failure, resource control, and defence from DOS.
+A VAT is a combination of a normal execution stack, a pending delivery queue and the heap of objects they operate on. It is a minimum unit of persistance, migration, partial failure, resource control, and defence from DOS.
 
-Communicating Event loops
+* Communicating Event loops:
+A turn is E's unit of operation.
 
+1. Near reference : Direct reference between two objects in the same VAT
+They carry immediate-calls and eventual-sends
+Provide one object synchronous access to another.
+
+2. Eventual reference : Cross boudries and interact with other VATs.
+They are first class, they can be passed as arguments, returned as results, stored in data structures, 
 Promise Pipelining - Shows that pipelining helps programs to tolerate latency and 
+Since each VAT runs concurrently with all other vats, turns in different vats no longer 
 
-Partial failure
 
-From Objects to Actors and Back Again -  presents a brief history of E’s concurrency control.
+* Partial failure
+
+* From Objects to Actors and Back Again -  presents a brief history of E’s concurrency control.
 
 ## Analysis
 
@@ -50,7 +58,6 @@ A simple example, a “statusHolder” object implementing the listener pattern 
 
 * Comparisons:
 In E as well as Smalltakct and Actors - All values are objects and all computation proceeds only by delivering messages to objects.
-
 
 * Related work:
 Several projects are adapting these insights provied by E to existing platforms.
