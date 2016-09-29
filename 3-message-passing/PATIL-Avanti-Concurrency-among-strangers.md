@@ -25,8 +25,8 @@ E has no classes. E creates a new object with the enclosed method definitions an
 Instance variables are the variables used freely with the object definition which must be defined in lexically enclosing scope. 
 
 * Ways to postpone plans in E:
-- Immediate : where previos plan is kept asise and new one is executed , which is more conventional (represented by "."
-- Eventual (where new plan is kept in 'to-do' list and executed after the previous plan is completed, which is represneted by "<-"
+(1)Immediate : where previos plan is kept asise and new one is executed , which is more conventional (represented by "."
+(2)Eventual (where new plan is kept in 'to-do' list and executed after the previous plan is completed, which is represneted by "<-"
 
 * Simple E execution:  VAT
 A VAT is a combination of a normal execution stack, a pending delivery queue and the heap of objects they operate on. It is a minimum unit of persistance, migration, partial failure, resource control, and defence from DOS.
@@ -35,8 +35,8 @@ A VAT is a combination of a normal execution stack, a pending delivery queue and
 A turn is E's unit of operation.
 
 1. Near reference : Direct reference between two objects in the same VAT
-They carry immediate-calls and eventual-sends
-Provide one object synchronous access to another.
+- They carry immediate-calls and eventual-sends
+- Provide one object synchronous access to another.
 
 2. Eventual reference : Cross boudries and interact with other VATs.
 They are first class, they can be passed as arguments, returned as results, stored in data structures, 
