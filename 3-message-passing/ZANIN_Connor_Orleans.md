@@ -8,7 +8,7 @@ This paper introduces Orleans, which is a programming model and runtime for easi
 
 ### Introduction
 
-Orleans is a simultaneously a programming model and a runtime designed for writing scalable, elastic, fault-tolerant applications; this framework is targeted at a cloud environment. The main consideration when designing Orleans was the ease-of-use of the model by the programmer. The authors wanted to make it possible for non-expert developers to write applications that could take advantage of the resourses in the cloud, while abstracting the problems of scalability, partial failure, and consistency from the developer. These problems are handled by the runtime.
+Orleans is simultaneously a programming model and a runtime designed for writing scalable, elastic, fault-tolerant applications; this framework is targeted at a cloud environment. The main consideration when designing Orleans was the ease-of-use of the model by the programmer. The authors wanted to make it possible for non-expert developers to write applications that could take advantage of the resourses in the cloud, while abstracting the problems of scalability, partial failure, and consistency from the developer. These problems are handled by the runtime.
 
 At the base level, Orleans relies on Actors, which they call "Grains." Grains adhere to a single address space, single threaded model. There can be multiple instances of a Grain (called "activiations"), but the single-threaded, single-address-space model allows these instances to be spread across multiple nodes.
 
@@ -25,7 +25,7 @@ Promises are used to coordinate asynchronous computation. In Orleans, a promise 
 1. An RPC-style method call to another Grain
 2. A call to a Delegate
 
-Delegates are methods that are called when a promise becomes *resolved* (either success or error).
+Delegates are methods that are called when a promise becomes *resolved* (either because of success or error).
 
 This section also discusses the implementation for creating Grains, Grain factories, and defining Grain interfaces. A point to note here is the exclusion of .NET property setters from Orleans (they return void). However these can easily be replaced by method calls to a grain.
 
