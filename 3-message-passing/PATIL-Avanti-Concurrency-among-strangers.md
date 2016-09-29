@@ -10,7 +10,7 @@ E programming language addresses these challenges, by changing few concepts of c
 ## Summary
 
 This paper focuses on E’s support for concurrent and distributed programming within the constraints of limited trust.
-Main contribution:
+* Main contribution:
 By dividing the state of a computational system into separately encapsulated objects, and by giving objects limited access to each other, we limit outside interference and extend the range of assumptions
 our programs may safely rely upon.
 By abstraction, we limit one object’s need for knowledge of others, reducing the number of cases which are
@@ -21,36 +21,35 @@ Authors provide an example of `The squential "StatusHolder"` for coordinating ch
 (2) Nested Subscription - additional subscriptions generated due to other activities and their impact on current subscribers
 (3) Nested Publication - resulting in muliple override of data
 
-A Taste of E: 
+* A Taste of E: 
+E has no classes. E creates a new object with the enclosed method definitions and bindes the new variable to this object. Invocation of a method causes a message to be delivered to an object. When object receives message it reacts according to the code of it's mathching method. Basically all values are objects and all computation proceeds only by delivering messages to objects. Object definition doesnt declare any instance variable. 
+Instance variables are the variables used freely with the object definition which must be defined in lexically enclosing scope. 
 
-- Immediate vs Eventual
+* Ways to postpone plans in E:
+- Immediate : where previos plan is kept asise and new one is executed , which is more conventional (represented by "."
+- Eventual (where new plan is kept in 'to-do' list and executed after the previous plan is completed, which is represneted by "<-"
 
-VAT - Simple E execution- 
+* Simple E execution:  VAT
+A VAT is minimum unit of persistance, migration, partial failure, resource control, and defence from DOS.
 
 Communicating Event loops
 
-Promise Pipelining 
+Promise Pipelining - Shows that pipelining helps programs to tolerate latency and 
 
 Partial failure
 
-From Objects to Actors and Back Again -  presents a brief history of E’s
-concurrency control.
-
+From Objects to Actors and Back Again -  presents a brief history of E’s concurrency control.
 
 ## Analysis
 
- E is an object-oriented programming language for secure distributed computing, created by Mark S. Miller, Dan Bornstein, and others at Electric Communities in 1997. E is mainly descended from the concurrent language Joule and from Original-E, a set of extensions to Java for secure distributed programming. E combines message-based computation with Java-like syntax. A concurrency model based on event loops and promises ensures that deadlock can never occur. <sup>[1]</sup>
+E is an object-oriented programming language for secure distributed computing, created by Mark S. Miller, Dan Bornstein, and others at Electric Communities in 1997. E is mainly descended from the concurrent language Joule and from Original-E, a set of extensions to Java for secure distributed programming. E combines message-based computation with Java-like syntax. A concurrency model based on event loops and promises ensures that deadlock can never occur. <sup>[1]</sup>
 
-This paper focuses on E’s support for concurrent and distributed programming within the constraints of limited trust.
+This paper focuses on E’s support for concurrent and distributed programming within the constraints of limited trust. Throughout this paper Author describes abstraction mechanisms adequate to craft diverse solutions adapted to the needs of many applications.
 
-Throughout this paper Author describes abstraction mechanisms adequate to craft diverse solutions adapted to the needs of many applications.
+A simple example, a “statusHolder” object implementing the listener pattern has been taken to view various scenarios in publisher and subscriber world. 
 
-Example:
-with a simple example, a “statusHolder” object implementing the listener pattern.
-
-
-
-* Limitations:
+* Comparisons:
+In E as well as Smalltakct and Actors - All values are objects and all computation proceeds only by delivering messages to objects.
 
 
 * Related work:
