@@ -1,3 +1,7 @@
+# Orleans: Cloud Computing for Everyone
+Sergey Bykov, Alan Geller, Gabriel Kliot, James R. Larus, Ravi Pandya, Jorgen Thelin
+
+
 The paper introduces the Orleans cloud computing framework, which is a software framework for _"building reliable, scalable and elastic distributed systems."_
 
 Orleans constrains the programming model for the developers to a path of best practices.The framework places a focus on using simple concurrency models using actors which communicate through asynchronous messages and promises. Actors are called grains and they run in isolation from each other. Orleans takes over the part of persisting, migrating replicating and reconcilation of grain states along with a lightweight transaction model. This provides for automatic error handling and failure recovery.  Declarative mechanism is encouraged where applicable, so that Orleans runtime can optimize for performance.
