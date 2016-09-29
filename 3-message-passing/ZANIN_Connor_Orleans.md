@@ -2,6 +2,8 @@
 
 ## Summary
 
+This paper introduces Orleans, which is a programming model and runtime for easily developing scalable, elastic,fault-tolerant, and consistent cloud applications. Its primitive execution unit is based on the Actor model, and programs are written in an asynchronous style, combining promises and callbacks.
+
 ## Analysis
 
 ### Introduction
@@ -37,7 +39,7 @@ To address shared state reconciliation, Orleans provides a default mechanism as 
 
 The authors are vague about the load balancing performed by the Orleans runtime. They say that requests to a Grain are "randomly distributed to existing activiations." They say that if an Activation has a full queue, a new Activation will be created on the same node. They do not mention what happens in the case where all nodes containing Activations of a Grain are busy. Presumably, a new node is requested and an initial Activation is "spun up."
 
-
+A major problem they mention is Orleans' data store. In section 3.8, they discuss the considerations that Orleans needs to make when assigning Activations to Transactions. Namely, the two key considerations are Atomicity and Consistency. A solution I might offer to this problem of "Activation scheduling" is to run the Transaction->Activation assignment->Reconciliation cycle in batches. In this way, presicely one Activation can be assigned/created for each Transaction and the data structures needed to keep track of where state changes have been made can be simpler. If creating Transaction batches introduces too much overhead, an alternative could be to simply create a new activation for each transaction, and run the reconciliation in the background (in batches).
 
 ## Limitations and Extensions
 
@@ -48,3 +50,5 @@ The contributions of this paper are major, however, when considering application
 As stated in the paper, a place for extension is the reconciliation system. Now, they have defined a loose way of assigning Activations to tasks. They could expand on their work by creating a more concise algorithm for Transaction creation, assigning Activations to Transactions (or creating them), and reconciling the modifications to Grains made by Transactions.
 
 ## Editorial
+
+Overall, I liked the paper. I didn't like the structure, which spread topics accross multiple sections (mainly introduction and either model/runtime sections). The introduction (which they seemed to have crammed into the abstract) served less as an introduction to the current state of the practice or the problem, and more as an introduction to the system. However, complaints about structure are minor and I did think they did a good job of giving both a high level overview of the system as well as a low enough level one; I was able to have a mental picture of the implementation without getting bogged down in details.
