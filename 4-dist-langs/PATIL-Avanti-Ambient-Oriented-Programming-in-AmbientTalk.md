@@ -11,9 +11,13 @@ This paper presents a new age field in distributed programming called Ambient in
 ## Summary
 
 * Motivation for Ambient-Oriented Programming language(AmOP)
-- Connection volatility, Ambient resources, Autonomy in hardware, Natural Concurrency – these are collectively described as hardware phenomena which is inherent to mobile networks.  
-- Previous distributed languages based on actor model and futures only solve problems for mobile networks partially.  
-- Distributed Middlewares based on RPC, Data sharing, Publisher subscriber, Tuple based model do not fully solve problems of mobile networks like n/w volatility, ambient resources, autonomy and concurrency or well integrate with the object- oriented paradigm.
+
+(1) Connection volatility, Ambient resources, Autonomy in hardware, Natural Concurrency – these are collectively described as hardware phenomena which is inherent to mobile networks. 
+
+(2) Previous distributed languages based on actor model and futures only solve problems for mobile networks partially.
+
+(3) Distributed Middlewares based on RPC, Data sharing, Publisher subscriber, Tuple based model do not fully solve problems of mobile networks like n/w volatility, ambient resources, autonomy and concurrency or well integrate with the object- oriented paradigm.
+
 * Ambient-Oriented Programming 
 
 
