@@ -22,35 +22,37 @@ AmbientTalk features a classless double-layered object model. Ac- tors are visib
 
 * Ambient-Oriented Programming 
 
-(1)	Classless Object Models 
+(1)	Classless Object Models: 
 
-(2)	Non-Blocking Communication Primitives 
+(2)	Non-Blocking Communication Primitives: 
 
-(3)	Reified Communication Traces 
+(3)	Reified Communication Traces:
 
-(4)	Ambient Acquaintance Management 
+(4)	Ambient Acquaintance Management:
 
 * The AmbientTalk Kernel 
 
-(1) A Double-layered Object Model 
+(1) A Double-layered Object Model:
 
-(2) The Passive Object Layer 
+(2) The Passive Object Layer:
 
-(3) The Active Object Layer 
+(3) The Active Object Layer:
 
-(4) First-class Mailboxes 
+(4) First-class Mailboxes:
 
-* Example: AmbientTalk at Work: AmbientChat 
+* This paper presents an example of AmbientTalk at Work: AmbientChat 
 
-(1) Ambient References 
+(1) Ambient References:
 
-(2) Non-blocking Futures 
+(2) Non-blocking Futures: 
 
-(3) Due: Handling Failures 
+(3) Due: Handling Failures: 
 
-(4) Due-blocks 
+(4) Due-blocks:
 
 * Conclusion and Future Work 
+
+AmOP privides new direction of exploration for future filled with IoT market.  Since AmOP is still in evolution stage it is difficult to come up with good software-engineering criteria for future AmOP language features. This is the reason the paper presents AmOP paradigm as a set of characteristics for programming languages that directly deal with hardware phenomena in the very heart of basic computational abstractions. Reified communication traces may be useful in solving transaction management in classic distributed systems, as already exemplified by optimistic process collaboration approaches such as the Time Warp mechanism. More insight is required on how to map AmOP features on efficient implementation technology which results in need of new distributed memory management techniques.
 
 ## Analysis
 
@@ -59,5 +61,6 @@ Languages like ABCL/f and Argus promote a scheme based on futures [14] partially
 Janus, Salsa and E are the languages based on Actor models which use pure asynchronous communication. However, there is no support to discover ambient resources or handling of volatile connections among autonomous computing units. 
 
 ## References
+
 
 
