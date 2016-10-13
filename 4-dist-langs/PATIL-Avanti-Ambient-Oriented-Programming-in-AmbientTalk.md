@@ -30,11 +30,31 @@ This is a solution provided to avoid problems like autonomy. Non- blocking recep
 
 (3)	Reified Communication Traces:
 
+Inconsistency is a huge issue in Non-blocking communication. AmOP paradigm has to provide programmers with an explicit representation (i.e. a reification) of the communication details which led to the inconsistent state. Reifying outgoing communication traces allow programmers to make a tradeoff between different delivery guarantees.
+
 (4)	Ambient Acquaintance Management:
+
+AmOp follows `Distributed naming`: where communicating parties do not need an explicit reference to each other beforehand. e.g. In Tuple space based middleware, a process can publish data in a tuple space, which can then be consulted by the other processes based on a pattern matching basis. AmOP language should allow an object to use distributed naming to spontaneously get acquainted with a previously unknown object based on an intentional description of that object rather than via a fixed URL. 
 
 * The AmbientTalk Kernel 
 
+AmbientTalk, is a language that was explicitly designed to satisfy its characteristics defined by Ambient-Oriented Programming. 
+
 (1) A Double-layered Object Model:
+AmbientTalk uses concurrent object model which is based on the model of ABCL/1.
+This model features active objects which consist
+    1)	perpetually running thread, 
+    2)	updateable state, 
+    3)	methods
+    4)	message queue. 
+ 
+Advantage of this mode is that it unifies imperative object-oriented programming and concurrent programming without suffering from omnipresent race conditions. 
+
+AmbientTalk’s object model `avoids race conditions` using following rules: 
+{1} `Containment`: Every passive object is contained within exactly one active object. 
+{2} `Argument Passing Rules`:  When an asynchronous message is sent to an active object, objects may be sent along as arguments. 
+
+
 
 (2) The Passive Object Layer:
 
@@ -62,7 +82,13 @@ Comparisons:
 Languages like ABCL/f and Argus promote a scheme based on futures [14] partially solve problems related to mobile network but their objects block when accessing unresolved futures.
 Janus, Salsa and E are the languages based on Actor models which use pure asynchronous communication. However, there is no support to discover ambient resources or handling of volatile connections among autonomous computing units. 
 
+It is impossible to prove that Classless Object Models, Non-Blocking Communication Primitives, Reified Communication Traces and Ambient Acquaintance Management
+ are strictly necessary characteristics for writing the applications we target. After all, AmOP does not transcend Turing equivalence. 
+
+
 ## References
+
+
 
 
 
