@@ -64,11 +64,6 @@ AmbientTalk passive objects are conceived as collections of slots mapping names 
 AmbientTalk actors have their own message queues and computational thread which processes incoming messages one by one by executing their corresponding method. Therefore, an actor is entirely single- threaded such that state changes using the classic assignment operator := cannot cause race conditions. Actors are created using the actor(o) form where o must be a passive object that specifies the behavior of the actor. In order to respect the containment principle, a copy of o is made before it is used by the actor form because o would otherwise be shared by the creating and the created actor. A newly created actor is immediately sent the `init()` message and this Actor denotes the current actor. In the case of synchronous messages of the form the arguments do not “leave” the actor and can therefore be safely passed by reference. 
 In the case of asynchronous messages of the form the arguments “leave” the actor from which the message is sent. When passing along arguments with (both synchronous and asynchronous) message sends, caution is required in order not to breach the containment principle. 
 
-
-
-
-
-
 (4) First-class Mailboxes:
 
 Mailboxes are first-class passive objects contained in the actor. AmbientTalk replaces the single message queue of the original actor model by a system of eight first-class mailboxes.  Types of messages are distinguished: 
