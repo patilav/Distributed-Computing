@@ -82,31 +82,38 @@ AbientTalk as a reflexive kernel:  AmbientTalk’s kernel can be reflectively ex
 
 * This paper presents an example of AmbientTalk at Work: AmbientChat 
 
-AmbientChat is an instant messenger application that epitomizes all the difficulties of mobile network applications in which multiple parties dynamically join and disjoin and collaborate without presuming a centralized server. 
+`AmbientChat` is an instant messenger application that epitomizes all the difficulties of mobile network applications in which multiple parties dynamically join and disjoin and collaborate without presuming a centralized server. 
 
 (1) Ambient References: can discover actors fitting that description and are resilient to the effects of volatile connections.
 
 (2) Non-blocking Futures: AmbientTalk’s futures avoid this problem by adopting the technique that was recently proposed in E [27]. It allows for a transparent forwarding of messages sent to a future to its resolution and features a when (aFuture, closure) construct to register a closure that is to be applied upon resolving the future. 
 
 (3) Due: Handling Failures: AmbientTalk’s default delivery policy guarantees eventual delivery of messages. Messages are stored indefinitely in the outbox of an actor until they can be delivered. The due language construct alters this policy by putting an expiration deadline on outgoing messages.
+
 (4) Due-blocks: are similar to try-catch blocks.
+
 * Conclusion and Future Work 
 
 AmOP privides new direction of exploration for future filled with IoT market.  Since AmOP is still in evolution stage it is difficult to come up with good software-engineering criteria for future AmOP language features. This is the reason the paper presents AmOP paradigm as a set of characteristics for programming languages that directly deal with hardware phenomena in the very heart of basic computational abstractions. Reified communication traces may be useful in solving transaction management in classic distributed systems, as already exemplified by optimistic process collaboration approaches such as the Time Warp mechanism. More insight is required on how to map AmOP features on efficient implementation technology which results in need of new distributed memory management techniques. 
 
+Future work done in a chat application with similar goals – called BlueChat implemented in Java using Bluetooth counts no less than 545 lines of code and allows ambient acquaintance discovery.
 ## Analysis
 
-Comparisons:
 Languages like ABCL/f and Argus promote a scheme based on futures [14] partially solve problems related to mobile network but their objects block when accessing unresolved futures.
 Janus, Salsa and E are the languages based on Actor models which use pure asynchronous communication. However, there is no support to discover ambient resources or handling of volatile connections among autonomous computing units. 
 
-It is impossible to prove that Classless Object Models, Non-Blocking Communication Primitives, Reified Communication Traces and Ambient Acquaintance Management
- are strictly necessary characteristics for writing the applications we target. After all, AmOP does not transcend Turing equivalence. 
+It is impossible to prove that Classless Object Models, Non-Blocking Communication Primitives, Reified Communication Traces and Ambient Acquaintance Management are strictly necessary characteristics for writing the applications we target. After all, AmOP does not transcend Turing equivalence. 
 
+In conclusion 
+
+(1) The implementation of ambient references heavily relies on AmbientTalk’s ambient acquaintance manage- ment facilities
+
+(2) AmbientTalk’s non-blocking futures delay the delivery of received messages until the expected result is ready to receive them. It reflects that reified communication traces are at the heart of realigning synchronisation with communication while strictly rely- ing on non-blocking communication primitives
+
+(3) The due language construct shows that although AmbientTalk’s default message delivery policy implements a resumable communication model, it can still cope with permanent failures by reflecting upon an actor’s communication traces.
+
+Finally, it is impossible to prove that AmbientTalk’s building blocks are necessary and sufficient to cover all future AmOP features.
+
+Paper discribes that efficiency was not it’s primary concern in conceiving the implementation of AmbientTalk. There has been several new 
 
 ## References
-
-
-
-
-
