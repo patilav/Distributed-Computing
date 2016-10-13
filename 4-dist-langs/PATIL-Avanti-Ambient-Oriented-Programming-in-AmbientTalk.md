@@ -6,11 +6,11 @@
 Avanti Patil <patil.av@husky.neu.edu>
 
 ## Synopsis
-This paper presents a new age field in distributed programming called Ambient intelligence (AmI). With emerging IoT business new problems which can’t be solved by conventional methods in programming. This paper talks about AmbientTalk – which is Ambient-Oriented Programming language (AmOP). Properties of mobile networks prominently include volatile connections and open network. Implementing languages based on Ambient-Oriented Programming paradigm help to deal with such problems. Research in this paper show that needs of mobile network are different from stationary n/w., AmbientTalk which is based on AmOP paradigm helps to solve these problems.  These concepts were implemented in an ambient peer-to-peer instant messaging app which was deployed on smart phones as part of this research.
+This paper presents a new age field in distributed programming called Ambient intelligence (AmI). With emerging IoT business arise new problems which can’t be solved by conventional methods in programming. Research in this paper show that needs of mobile network are different from stationary n/w.  Properties of mobile networks prominently include volatile connections and implementing languages based on Ambient-Oriented Programming paradigm help to deal with such problems. This paper talks about AmbientTalk – which is Ambient-Oriented Programming language (AmOP) for mobile networks. These concepts were implemented in an ambient peer-to-peer instant messaging app called AmbientChat which was deployed on smart phones as part of this research.
 
 ## Summary
 
-AmbientTalk features a classless double-layered object model. Ac- tors are visible in mobile networks and communicate with each other in a non- blocking way. Internally, they contain a graph of passive objects. Actors have four mailboxes which reify their communication traces and four mailboxes which are causally connected to the outside world to reflect the evolution of acquaintances in the ambient. These properties turn AmbientTalk into an AmOP language 
+AmbientTalk features a classless double-layered object model. Actors are visible in mobile networks and communicate with each other in a non-blocking way. Internally, they contain a graph of passive objects. Actors have four mailboxes which reify their communication traces and four mailboxes which are causally connected to the outside world to reflect the evolution of acquaintances in the ambient. These properties turn AmbientTalk into an AmOP language.
 
 * Motivation for Ambient-Oriented Programming language(AmOP)
 
