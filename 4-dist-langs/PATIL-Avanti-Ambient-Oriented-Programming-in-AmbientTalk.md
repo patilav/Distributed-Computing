@@ -53,25 +53,43 @@ Advantage of this mode is that it unifies imperative object-oriented programming
 AmbientTalk’s object model `avoids race conditions` using following rules: 
 {1} `Containment`: Every passive object is contained within exactly one active object. 
 {2} `Argument Passing Rules`:  When an asynchronous message is sent to an active object, objects may be sent along as arguments. 
-
-
+AmbientTalk’s distribution model is a combination of actor model, imperative thread model and the prototype-based object model.
 
 (2) The Passive Object Layer:
 
+AmbientTalk passive objects are conceived as collections of slots mapping names to objects and/or methods. Slots can be mutable (:) or immutable (::).Objects are lexically scoped. Objects can also be created by extending existing ones. Messages not understood by the newly created object are automatically delegated to the parent 
+
 (3) The Active Object Layer:
+
+AmbientTalk actors have their own message queues and computational thread which processes incoming messages one by one by executing their corresponding method. Therefore, an actor is entirely single- threaded such that state changes using the classic assignment operator := cannot cause race conditions. Actors are created using the actor(o) form where o must be a passive object that specifies the behavior of the actor. In order to respect the containment principle, a copy of o is made before it is used by the actor form because o would otherwise be shared by the creating and the created actor. A newly created actor is immediately sent the `init()` message and this Actor denotes the current actor. In the case of synchronous messages of the form the arguments do not “leave” the actor and can therefore be safely passed by reference. 
+In the case of asynchronous messages of the form the arguments “leave” the actor from which the message is sent. When passing along arguments with (both synchronous and asynchronous) message sends, caution is required in order not to breach the containment principle. 
+
+
+
+
+
 
 (4) First-class Mailboxes:
 
+Mailboxes are first-class passive objects contained in the actor. AmbientTalk replaces the single message queue of the original actor model by a system of eight first-class mailboxes.  Types of messages are distinguished: 
+1.	outgoing messages sent by actor that have not been acknowledged as received by other party (outbox)
+2.	outgoing messages that have been acknowledged to be received (sentbox)
+3.	non-processed but received incoming messages (inbox)
+4.	processed received messages (rcvbox)
+AmbientTalk actors have four additional predefined mailboxes called joinedbox, disjoinedbox, requiredbox and providedbox. 
+
+AbientTalk as a reflexive kernel:  AmbientTalk’s kernel can be reflectively extended which consists of the double-layered object model along with the system of eight built-in mailboxes. The built-in mailboxes and their observers can be regarded as part of AmbientTalk’s meta object protocol (MOP) since they partially reify the state of the interpreter in Message reception as well as message processing. 
+
 * This paper presents an example of AmbientTalk at Work: AmbientChat 
 
-(1) Ambient References:
+AmbientChat is an instant messenger application that epitomizes all the difficulties of mobile network applications in which multiple parties dynamically join and disjoin and collaborate without presuming a centralized server. 
 
-(2) Non-blocking Futures: 
+(1) Ambient References: can discover actors fitting that description and are resilient to the effects of volatile connections.
 
-(3) Due: Handling Failures: 
+(2) Non-blocking Futures: AmbientTalk’s futures avoid this problem by adopting the technique that was recently proposed in E [27]. It allows for a transparent forwarding of messages sent to a future to its resolution and features a when (aFuture, closure) construct to register a closure that is to be applied upon resolving the future. 
 
-(4) Due-blocks:
-
+(3) Due: Handling Failures: AmbientTalk’s default delivery policy guarantees eventual delivery of messages. Messages are stored indefinitely in the outbox of an actor until they can be delivered. The due language construct alters this policy by putting an expiration deadline on outgoing messages.
+(4) Due-blocks: are similar to try-catch blocks.
 * Conclusion and Future Work 
 
 AmOP privides new direction of exploration for future filled with IoT market.  Since AmOP is still in evolution stage it is difficult to come up with good software-engineering criteria for future AmOP language features. This is the reason the paper presents AmOP paradigm as a set of characteristics for programming languages that directly deal with hardware phenomena in the very heart of basic computational abstractions. Reified communication traces may be useful in solving transaction management in classic distributed systems, as already exemplified by optimistic process collaboration approaches such as the Time Warp mechanism. More insight is required on how to map AmOP features on efficient implementation technology which results in need of new distributed memory management techniques. 
